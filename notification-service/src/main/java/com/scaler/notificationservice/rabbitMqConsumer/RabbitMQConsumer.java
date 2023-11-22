@@ -4,6 +4,7 @@ import com.scaler.notificationservice.model.NotificationMessageRequest;
 import com.scaler.notificationservice.service.EmailService;
 import com.scaler.notificationservice.service.NotificationService;
 import com.scaler.notificationservice.service.SMSService;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,7 @@ public class RabbitMQConsumer {
         this.smsService = smsService;
     }
 
-    //@RabbitListener(queues = "your-queue-name")
+    @RabbitListener(queues = "queue1")
     public void receiveMessage(NotificationMessageRequest message) {
         if(Objects.nonNull(message)){
             latch.countDown();

@@ -40,6 +40,7 @@ public class RabbitMqConfig {
         connectionFactory.setPort(5672);
         connectionFactory.setUsername("admin");
         connectionFactory.setPassword("s3crEt");
+        connectionFactory.setVirtualHost("/scaler");
         return connectionFactory;
     }
     @Bean

@@ -29,8 +29,8 @@ public class EmailService {
 
     public void sendEmail(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo("razamustafa.8@gmail.com");
-        message.setSubject("subject");
+        message.setTo(to);
+        message.setSubject(subject);
         message.setText(text);
         javaMailSender.send(message);
     }
@@ -40,10 +40,9 @@ public class EmailService {
         String userName = message.getNotifiedUser();
         UsersEntity user = userRepository.findByUsername(userName);
         String email="";
-        String phNo="";
+        String subject="Notification-service";
         if(Objects.nonNull(user)) {
             email = user.getEmail();
-            phNo = user.getPhone_number();
         }
 
         Map<String, String> mapBody = new HashMap<>();
@@ -61,7 +60,7 @@ public class EmailService {
 
 
 
-        sendEmail(email, phNo, body);
+        sendEmail(email, subject, body);
 
 
     }
